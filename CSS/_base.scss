@@ -78,6 +78,14 @@ header{
     }
 }
 
+.header-hide{
+    opacity: 0.1;
+
+    &:hover{
+        opacity: 1;
+    }
+}
+
 .photo-pages {
     position: absolute;
     left: 50%;
@@ -130,6 +138,10 @@ footer{
         height: 10.8vh;
         max-height: 117px;
         justify-content: space-between;
+
+        @media screen and (orientation: portrait) {
+            height: 5vh;
+        }
    }
 
     .logo{
@@ -137,6 +149,10 @@ footer{
 
         @media screen and (min-width: 1920px) {
             font-size: 28px;
+        }
+
+        @media screen and (orientation: portrait) {
+            font-size: 10px;
         }
     }
 
@@ -167,6 +183,10 @@ footer{
             color: #1a1a1d;
         }
 
+        @media screen and (orientation: portrait) {
+            font-size: 8px;
+        }
+
     }
 
     .down-block{
@@ -175,6 +195,10 @@ footer{
         max-height: 111px;
         border-top: 2px solid #f5f5f5;;
         justify-content: space-between;
+
+        @media screen and (orientation: portrait) {
+            height: 3vh;
+        }
     }
 
     .cooperating-info{
@@ -184,17 +208,29 @@ footer{
         @media screen and (min-width: 1920px) {
             font-size: 15px;
         }
+
+        @media screen and (orientation: portrait) {
+            font-size: 8px;
+        }
     }
 
     .social-networks{
         width: 9.58vw;
         max-width: 184px;
         justify-content: space-between;
+
+        @media screen and (orientation: portrait) {
+            width: 20vw;
+        }
     }
 
     .social-network{
         text-decoration: unset;
         color: #1a1a1d;
+
+        @media screen and (orientation: portrait) {
+            font-size: 10px;
+        }
     }
 
 }
