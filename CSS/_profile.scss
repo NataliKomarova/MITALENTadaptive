@@ -181,6 +181,7 @@
       margin-right: 3vw;
       &.disabled {
         opacity: 0.5;
+        pointer-events: none;
       }
 
       @media screen and (min-width: 1920px) {
@@ -191,9 +192,11 @@
     .fa-long-arrow-alt-right {
       &.disabled {
         opacity: 0.5;
+        pointer-events: none;
       }
     }
   }
+
 
   .slide-content {
     flex-grow: 1;
@@ -942,11 +945,17 @@
 
   .photo {
     height: 45vh;
-    max-height: 490px;
+    max-height: 490px; 
     background-color: $photo-color;
+    background-position: center;
+    background-size: auto 100%;
 
     &:hover .item-inner {
       display: block;
+    }
+
+    @media screen and (min-width: 1920px) {
+        height: 490px;
     }
 
     @media screen and (orientation: portrait) {

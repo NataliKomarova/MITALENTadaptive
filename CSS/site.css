@@ -863,6 +863,7 @@ footer .social-network {
 
 .first-screen .slider-arrows .fa-long-arrow-alt-left.disabled {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 @media screen and (min-width: 1920px) {
@@ -873,6 +874,7 @@ footer .social-network {
 
 .first-screen .slider-arrows .fa-long-arrow-alt-right.disabled {
   opacity: 0.5;
+  pointer-events: none;
 }
 
 .first-screen .slide-content {
@@ -1806,10 +1808,18 @@ footer .social-network {
   height: 45vh;
   max-height: 490px;
   background-color: #e2e8e8;
+  background-position: center;
+  background-size: auto 100%;
 }
 
 .forth-screen .photo:hover .item-inner {
   display: block;
+}
+
+@media screen and (min-width: 1920px) {
+  .forth-screen .photo {
+    height: 490px;
+  }
 }
 
 @media screen and (orientation: portrait) {
