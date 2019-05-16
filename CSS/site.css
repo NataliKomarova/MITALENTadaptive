@@ -406,6 +406,7 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background-color: white;
   max-width: 1920px;
   height: 3vh;
   max-height: 32px;
