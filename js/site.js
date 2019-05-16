@@ -127,6 +127,7 @@ function doSlide(direction) {
     arrowDisable(leftArrowElement, rightArrowElement);
     arrowDisable(ArrowPortraitElements[0], ArrowPortraitElements[1]);
     makeActivePageControl(slideControls, currentSlide);
+    videoEnded();
 }
 
 leftArrowElement.addEventListener('click', function () { doSlide(-1) });
@@ -139,6 +140,7 @@ function doSlideByNum(slideNum) {
     prepareFirstScreenInfo(currentSlide);
     arrowDisable(leftArrowElement, rightArrowElement);
     makeActivePageControl(slideControls, currentSlide);
+    videoEnded();
 }
 
 
