@@ -15,14 +15,29 @@
 <body style="max-width: 1920px">
     <header class="flex-container">
         <div class="left-controls">
-            <button class="icon-button"><i class="fas fa-bars"></i></button>
-            <a href="#" class="link-font clients-link">CLIENTS</a>
-            <a href="#" class="link-font">NEWS</a>
+            <div class="menu-toggle">
+                <input type="checkbox" />
+                <span class="burger-layer"></span>
+                <span class="burger-layer"></span>
+                <span class="burger-layer"></span>
+                <ul class="burger-menu">
+                    <li><a href="#" class="link-font clients-link">CLIENTS</a></li>
+                    <li><a href="#" class="link-font">NEWS</a></li>
+                </ul>
+            </div>
+            <!-- <button class="icon-button"><i class="fas fa-bars"></i></button> -->
+            <div class="open-menu">
+                <a href="#" class="link-font clients-link">CLIENTS</a>
+                <a href="#" class="link-font">NEWS</a>
+            </div>
         </div>
-
-        <div class="search-controls">
-            <button class="icon-button"><i class="fas fa-search"></i></button>
-        </div>
+        <div class="search-block">
+        <form class="search-controls nunito-extrabold" action="https://www.google.com/search"  method="get" target="_blank">
+            <input type="search" name="q" placeholder="Search">
+            <button class="icon-button search"><i class="fas fa-search"></i></button>
+        </form>
+        <button class="icon-button cancel"><i class="fas fa-times"></i></button>
+    </div>
         <div class="site-title nunito-extrabold">MITALENT</div>
     </header>
     <section class="first-screen">
@@ -35,8 +50,8 @@
                 </div>
                 <div class="slider-controls">
                     <ul class="slider-pages nunito-extrabold">
-                        <li class="slider-page">01</li>
-                        <li class="slider-page active">02</li>
+                        <li class="slider-page active">01</li>
+                        <li class="slider-page">02</li>
                         <li class="slider-page">03</li>
                         <li class="slider-page">04</li>
                     </ul>
@@ -48,27 +63,33 @@
             </div>
             <div class="slide-content">
                 <div class="slider-arrows-portrait">
-                    <i class="fas fa-long-arrow-alt-left"></i>
-                    <i class="fas fa-long-arrow-alt-right disabled"></i>
+                    <i class="fas fa-long-arrow-alt-left disabled"></i>
+                    <i class="fas fa-long-arrow-alt-right"></i>
                 </div>
-                <div class="slide-video"></div>
+                <div class="slide-video">
+                    <video src="video/video_1.mp4" poster="video/poster_1.jpg" class="slide-video-content">
+                        <!-- <source class="video-source" src="video/video_1.mp4" type='video/mp4'> -->
+                    </video>
+                </div>
                 <div class="white-stick"></div>
                 <div class="slide-button">
-                    <i class="fas fa-play"></i>
+                    <i id="main-video-control" class="fas fa-play"></i>
                 </div>
                 <div class="slide-title nunito-extrabold">
                     Enquire about Derek
                 </div>
+                </video>
             </div>
-        </div>
     </section>
 
     <section class="second-screen flex-container">
         <div class="photo-slider-control-block">
             <div class="photo-slider-control">
+                <div class="slider-content-block">
+                </div>
                 <ul class="photo-pages flex-container">
-                    <li class="photo-page"></li>
                     <li class="photo-page active"></li>
+                    <li class="photo-page"></li>
                     <li class="photo-page"></li>
                     <li class="photo-page"></li>
                 </ul>
@@ -78,13 +99,13 @@
             <div class="person-content">
                 <div class="about-person-controls">
                     <ul class="about-person-pages flex-container nunito-extrabold">
-                        <li class="about-person-page active">Profile</li>
-                        <li class="about-person-page">Press</li>
-                        <li class="about-person-page">Awards</li>
-                        <li class="about-person-page">Creadits</li>
+                        <li class="about-person-page active" data-id="Profile">Profile</li>
+                        <li class="about-person-page" data-id="Press">Press</li>
+                        <li class="about-person-page" data-id="Awards">Awards</li>
+                        <li class="about-person-page" data-id="Creadits">Creadits</li>
                     </ul>
                 </div>
-                <div class="about-person-content">
+                <div id="Profile" class="about-person-content">
                     <h2 class="content-name poppins-regular">Profile.</h2>
                     <div class="content-intro poppins-regular">Derek Anderson is a leading actor, comedian and
                         writer.
@@ -109,13 +130,59 @@
                         architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam.
                     </div>
                 </div>
+                <div id="Press" class="about-person-content">
+                    <h2 class="content-name poppins-regular">Press.</h2>
+                    <div class="content-intro poppins-regular">On press Derek Anderson is a leading comedian, actor and
+                        writer.
+                    </div>
+                    <div class="awards nunito-semibold"><i class="far fa-star"></i>British Award 2018</div>
+                    <div class="content-text nunito-regular">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                        ut
+                        labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi
+                        ut
+                        aliquip ex ea commodo consequat.
+                    </div>
+                </div>
+                <div id="Awards" class="about-person-content">
+                    <h2 class="content-name poppins-regular">Awards.</h2>
+                    <div class="content-intro poppins-regular">Awards of Derek Anderson is a million dollars.
+                    </div>
+                    <div class="awards nunito-semibold"><i class="far fa-star"></i>British Award 2019</div>
+                    <div class="content-text nunito-regular">
+                        Dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi
+                        ut
+                        aliquip ex ea commodo consequat.
+                        <br><br>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                        mollit.
+                    </div>
+                </div>
+                <div id="Creadits" class="about-person-content">
+                    <h2 class="content-name poppins-regular">Creadits.</h2>
+                    <div class="content-intro poppins-regular">Don't know about Derek Anderson Creadits.
+                    </div>
+                    <div class="awards nunito-semibold"><i class="far fa-star"></i>British Award 2021</div>
+                    <div class="content-text nunito-regular">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
+                        ut
+                        labore.
+                    </div>
+                </div>
             </div>
         </div>
         <div class="social-networks-block">
             <div class="social-networks flex-container">
-                <a href="https://www.facebook.com/" target="_blank" class="social-network"><i class="fab fa-facebook"></i></a>
-                <a href="https://www.instagram.com" target="_blank" class="social-network"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.youtube.com" target="_blank" class="social-network"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.facebook.com/" target="_blank" class="social-network"><i
+                        class="fab fa-facebook"></i></a>
+                <a href="https://www.instagram.com" target="_blank" class="social-network"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com" target="_blank" class="social-network"><i
+                        class="fab fa-youtube"></i></a>
                 <a href="https://twitter.com" target="_blank" class="social-network"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
@@ -126,7 +193,8 @@
                 <h2 class="left-title poppins-regular">Derek Anderson on Press</h2>
                 <div class="left-stick"></div>
                 <div class="left-article flex-container">
-                    <div class="article-photo"><i class="fas fa-play"></i></div>
+                    <div class="article-photo" style="background-image: url('video/poster_1.jpg')"><i
+                            class="fas fa-play"></i></div>
                     <div class="title-date-block">
                         <h3 class="article-title poppins-medium">29 Motivational Quotes For Business And Other Work
                             Environments</h3>
@@ -134,7 +202,8 @@
                     </div>
                 </div>
                 <div class="left-article flex-container">
-                    <div class="article-photo"><i class="fas fa-play"></i></div>
+                    <div class="article-photo" style="background-image: url('video/poster_2.jpg')"><i
+                            class="fas fa-play"></i></div>
                     <div class="title-date-block">
                         <h3 class="article-title poppins-medium">5 Reasons To Keep Your Beauty Salon<br> Reservation
                         </h3>
@@ -146,7 +215,8 @@
             </div>
         </div>
         </div>
-        <div class="right-photo"></div>
+        <!-- <div class="right-photo"></div> -->
+        <div class="right-photo"><img class="right-img" src="https://kor.ill.in.ua/m/610x385/2031772.jpg"></img></div>
     </section>
 
     <section class="forth-screen">
@@ -164,49 +234,11 @@
             </div>
         </div>
         <div class="photo-carousel">
-            <div class="photo-block">
-                <div class="photo" style="background-image:url('https://cdn-03.independent.ie/style/celebrity/celebrity-news/article37866116.ece/097c2/AUTOCROP/w620/ipanews_cbc3aeeb-0628-4b80-8370-0cd43cbc3929_1')">
-                    <div class="item-inner">
-                        <button class="round-button"><i class="fas fa-arrow-up"></i></button>
-                        <div class="item-info">
-                            <div class="person-name poppins-regular">Keith Ruiz</div>
-                            <div class="person-job nunito-extrabold">comedian</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo" style="background-image:url('https://pmctvline2.files.wordpress.com/2018/10/game-of-thrones-peter-dinklage-tyrion-death-season-8-interview.jpg?w=620')">
-                    <div class="item-inner">
-                        <button class="round-button"><i class="fas fa-arrow-up"></i></button>
-                        <div class="item-info">
-                            <div class="person-name poppins-regular">Keith Ruiz</div>
-                            <div class="person-job nunito-extrabold">comedian</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo" style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcaeIWOmi62oncorhSKDzoBPIA7mF1QWUqgnFXKRTbaGHAsp8fUA')">
-                    <div class="item-inner">
-                        <button class="round-button"><i class="fas fa-arrow-up"></i></button>
-                        <div class="item-info">
-                            <div class="person-name poppins-regular">Keith Ruiz</div>
-                            <div class="person-job nunito-extrabold">comedian</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="photo hide-photo" style="background-image:url('https://cdn-static.denofgeek.com/sites/denofgeek/files/styles/main_wide/public/2018/05/game-of-thrones-season-1-recap.jpg?itok=ZwQDxPFR')">
-                    <div class="item-inner">
-                        <button class="round-button"><i class="fas fa-arrow-up"></i></button>
-                        <div class="item-info">
-                            <div class="person-name poppins-regular">Keith Ruiz</div>
-                            <div class="person-job nunito-extrabold">comedian</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <ul class="photo-pages flex-container">
-                <li class="photo-page active"></li>
+                <li class="photo-page active prev"></li>
                 <li class="photo-page"></li>
                 <li class="photo-page"></li>
-                <li class="photo-page"></li>
+                <li class="photo-page next"></li>
             </ul>
         </div>
 
@@ -215,16 +247,20 @@
     <footer>
         <div class="up-block  flex-container">
             <div class="logo nunito-extrabold">MITALENT</div>
-            <div class="sign-up nunito-semibold">sign up our newsletter<a href="mailto:a@a.ru"><i class="far fa-envelope"></i></a>
+            <div class="sign-up nunito-semibold">sign up our newsletter<a href="mailto:a@a.ru"><i
+                        class="far fa-envelope"></i></a>
             </div>
         </div>
         <div class="down-block flex-container">
             <div class="cooperating-info .nunito-regular">© 2018 MI Talent. Designed by Tranmautritam for Mass
                 Impressions.</div>
             <div class="social-networks flex-container">
-                <a href='https://www.facebook.com/' target="_blank" class="social-network"><i class="fab fa-facebook"></i></a>
-                <a href='https://www.instagram.com' target="_blank" class="social-network"><i class="fab fa-instagram"></i></a>
-                <a href='https://www.youtube.com' target="_blank" class="social-network"><i class="fab fa-youtube"></i></a>
+                <a href='https://www.facebook.com/' target="_blank" class="social-network"><i
+                        class="fab fa-facebook"></i></a>
+                <a href='https://www.instagram.com' target="_blank" class="social-network"><i
+                        class="fab fa-instagram"></i></a>
+                <a href='https://www.youtube.com' target="_blank" class="social-network"><i
+                        class="fab fa-youtube"></i></a>
                 <a href='https://twitter.com' target="_blank" class="social-network"><i class="fab fa-twitter"></i></a>
             </div>
         </div>

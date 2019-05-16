@@ -4,7 +4,7 @@
   position: relative;
 
   @media screen and (orientation: portrait) {
-    height: 43vh;
+    height: auto;
   }
 
   .rectangle-with-bg {
@@ -33,7 +33,10 @@
 
     @media screen and (orientation: portrait) {
       width: 100vw;
-      top: 4vh;
+      height: unset;
+      max-height: unset;
+      position: static;
+      //top: 4vh;
       flex-direction: column-reverse;
     }
   }
@@ -46,7 +49,7 @@
 
     @media screen and (orientation: portrait) {
       width: 100vw;
-      height: 50vh;
+      height: auto;
     }
   }
 
@@ -59,9 +62,12 @@
     z-index: 1;
 
     @media screen and (orientation: portrait) {
-      top: 4vh;
-      left: 0;
+      //top: 4vh;
+      //left: 0;
       margin-left: 10px;
+      position: static;
+      transform: unset;
+      left: unset;
     }
   }
 
@@ -195,8 +201,11 @@
         pointer-events: none;
       }
     }
-  }
 
+    &:hover{
+      cursor: pointer;
+    }
+  }
 
   .slide-content {
     flex-grow: 1;
@@ -210,8 +219,33 @@
     }
   }
 
+  .slide-video{
+    width: 75vw;
+    max-width: 1320px;
+    height: 100%;
+    max-height: 810px;
+
+    @media screen and (orientation: portrait) {
+      width: 100vw;
+      //height: 60vw;
+    }
+  }
+
+  .slide-video-content{
+    object-fit: cover;
+    width: 75vw;
+    max-width: 1320px;
+    height: 100%;
+    max-height: 810px;
+    @media screen and (orientation: portrait) {
+      width: 100vw;
+      //height: 60vw;
+    }
+  }
+
   .slider-arrows-portrait {
     display: none;
+    z-index: 9;
 
     @media screen and (orientation: portrait) {
       display: block;
@@ -225,6 +259,7 @@
       .fa-long-arrow-alt-left {
         &.disabled {
           opacity: 0.5;
+          pointer-events: none;
         }
       }
 
@@ -234,8 +269,13 @@
 
         &.disabled {
           opacity: 0.5;
+          pointer-events: none;
         }
       }
+    }
+
+    &:hover{
+      cursor: pointer;
     }
   }
 
@@ -285,9 +325,10 @@
       top: 50%;
       right: 50%;
       transform: translate(50%, -50%);
+      z-index: 10;
     }
 
-    i {
+    .fa-play {
       position: relative;
       left: 3px;
 
@@ -303,7 +344,19 @@
         left: 0px;
       }
     }
-  }
+
+    .fa-pause{
+      opacity: .5;
+    }
+
+    &:hover{
+      cursor: pointer;
+    }
+ }
+
+ .slide-button-pause{
+   background-color:rgba(255, 255, 255, .5);
+ }
 
   .slide-title {
     width: 25vw;
@@ -376,14 +429,35 @@
     height: 100%;
     background-color: $photo-color;
     position: relative;
+    overflow: hidden;
 
     @media screen and (max-width: 1200px) {
       width: 50vw;
     }
 
     @media screen and (orientation: portrait) {
-      width: 85%;
+      width: 80%;
+      max-width: unset;
+      margin: 0 auto;
     }
+  }
+
+  .slider-content-block{
+    width: 9999px;
+    height: 100%;
+    transition: margin-left 250ms;
+  }
+
+  .photo-slider-content{
+    display: inline-block;
+    height: 100%;
+    //max-height: 490px;
+    width: 34vw;
+    max-width: 649px;
+    //background-image: url('');
+    background-color: #e2e8e8;
+    background-position: center;
+    background-size: auto 100%;
   }
 
   .about-person {
@@ -401,7 +475,8 @@
 
     @media screen and (orientation: portrait) {
       width: 100%;
-      margin-top: 3vh;
+      margin-top: 7vh;
+      max-width: unset;
     }
   }
 
@@ -420,7 +495,7 @@
     }
 
     @media screen and (orientation: portrait) {
-      font-size: 2.5vw;
+      font-size: 3vw;
     }
   }
 
@@ -482,8 +557,9 @@
     }
 
     @media screen and (orientation: portrait) {
-      font-size: 24px;
-      margin-bottom: 10px;
+      // font-size: 24px;
+      // margin-bottom: 10px;
+      display: none;
     }
   }
 
@@ -539,7 +615,8 @@
     }
 
     @media screen and (orientation: portrait) {
-      font-size: 10px;
+      font-size: 14px;
+      line-height: 1.2;
       margin-bottom: 10px;
     }
   }
@@ -555,9 +632,10 @@
     }
 
     @media screen and (orientation: portrait) {
-      top: 25%;
-      transform: translateY(-50%);
-      font-size: 16px;
+      order: -1;
+      position: static;
+      width: 100vw;
+      margin-bottom: 20px;
     }
   }
 
@@ -568,7 +646,9 @@
     flex-direction: column;
 
     @media screen and (orientation: portrait) {
-      font-size: 10px;
+      font-size: 20px;
+      flex-direction: row;
+      justify-content: space-around;
     }
   }
 
@@ -586,6 +666,10 @@
     }
 
     &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media screen and (orientation: portrait) {
       margin-bottom: 0;
     }
   }
@@ -610,6 +694,7 @@
   @media screen and (orientation: portrait) {
     flex-direction: column;
     height: unset;
+    padding: 40px 20px;
   }
 
   .left-info-block {
@@ -619,7 +704,8 @@
 
     @media screen and (orientation: portrait) {
       width: 100%;
-      height: 50vh;
+      height: auto;
+      margin-bottom: 40px;
     }
   }
 
@@ -632,10 +718,11 @@
     transform: translate(-50%, -50%);
 
     @media screen and (orientation: portrait) {
+      position: static;
       width: 100%;
-      left: 20px;
+      left: unset;
       top: 0;
-      transform: translate(0%, 0%);
+      transform: unset;
     }
   }
 
@@ -721,6 +808,8 @@
     flex-shrink: 0;
     background-color: $photo-color;
     margin-right: 2.2vw;
+    background-position: center;
+    background-size: auto 100%;
 
     @media screen and (min-width: 1920px) {
       margin-right: 42px;
@@ -749,7 +838,7 @@
     }
 
     @media screen and (orientation: portrait) {
-      font-size: 12px;
+      font-size: 14px;
       top: -4px;
     }
   }
@@ -802,11 +891,22 @@
     flex-grow: 1;
     height: 100%;
     background-color: $photo-color;
+    // background-image: url("https://vignette.wikia.nocookie.net/gameofthrones/images/9/94/804_Ghost_Profile.png/revision/latest/scale-to-width-down/338?cb=20190506030424");
+    // background-color: $photo-color;
+    // background-position: center;
+    // background-size: auto 100%;
 
     @media screen and (orientation: portrait) {
-      width: 100%;
+      width: 80%;
       height: 60vh;
+      margin: 0 auto;
     }
+  }
+
+  .right-img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -921,11 +1021,17 @@
 
   .photo-carousel {
     width: 100%;
+
+    height: 52vh;
+    max-height: 563px;
+
     position: relative;
     margin-top: 12vh;
+    overflow: hidden;
 
     @media screen and (min-width: 1920px) {
       margin-top: 130px;
+      height: 563px;
     }
 
     @media screen and (orientation: portrait) {
@@ -934,18 +1040,24 @@
   }
 
   .photo-block {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(4, 1fr);
+    //display: grid;
+    //width: 100%;
+    width: 9999px;
+    //grid-template-columns: repeat(4, 1fr);
+    transition: margin-left 250ms;
 
-    @media screen and (orientation: portrait) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    // @media screen and (orientation: portrait) {
+    //   grid-template-columns: repeat(3, 1fr);
+    // }
   }
 
   .photo {
+    display: inline-block;
     height: 45vh;
-    max-height: 490px; 
+    max-height: 490px;
+    width: 22vw;
+    max-width: 420px;
+    background-image: url("");
     background-color: $photo-color;
     background-position: center;
     background-size: auto 100%;
@@ -955,7 +1067,7 @@
     }
 
     @media screen and (min-width: 1920px) {
-        height: 490px;
+      height: 490px;
     }
 
     @media screen and (orientation: portrait) {
@@ -996,10 +1108,10 @@
     }
 
     @media screen and (orientation: portrait) {
-        font-size: 8px;
-        width: 20px;
-        height: 20px;
-      }
+      font-size: 8px;
+      width: 20px;
+      height: 20px;
+    }
 
     i {
       transform: rotate(45deg);
@@ -1050,12 +1162,13 @@
   .photo-pages {
     position: absolute;
     left: 50%;
-    bottom: -70px;
+    //bottom: -70px;
+    bottom: 0;
     transform: translateX(-50%);
 
-    @media screen and (orientation: portrait) {
-      bottom: -30px;
-    }
+    // @media screen and (orientation: portrait) {
+    //   bottom: -30px;
+    // }
   }
 
   .photo-page {
