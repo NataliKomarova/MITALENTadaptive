@@ -33,7 +33,6 @@
 
 header {
   justify-content: space-between;
-  background-color: rgba(255, 255, 255, 1);
   max-width: 1920px;
   height: 3vh;
   max-height: 32px;
@@ -75,42 +74,43 @@ header {
     -webkit-user-select: none;
     user-select: none;
 
-    input {
+    @media screen and (orientation: portrait) {
+      display: block;
+    }
+
+    input[type ="checkbox"] {
       display: block;
       width: 15px;
       height: 12px;
       position: absolute;
       top: 0;
       left: 0;
-
+  
       cursor: pointer;
-
+  
       opacity: 0;
       z-index: 2;
-
+  
       &:checked ~ .burger-layer {
         opacity: 1;
         transform: rotate(45deg) translate(-2px, -1px);
         background: #232323;
       }
-
+  
       &:checked ~ .burger-layer:nth-of-type(2) {
         opacity: 0;
         transform: rotate(0deg) scale(0.2, 0.2);
       }
-
+  
       &:checked ~ span:nth-of-type(3) {
         transform: rotate(-45deg) translate(0, -1px);
       }
-
+  
       &:checked ~ .burger-menu {
         transform: none;
       }
     }
 
-    @media screen and (orientation: portrait) {
-      display: block;
-    }
   }
 
   .burger-layer {

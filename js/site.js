@@ -212,7 +212,7 @@ function photoCarouselAction(currentPhoto, prevPhoto, photoNum, photoWidth, caro
         carouselBlock.style.marginLeft = screenPosition + 'px';
     }
     else if (currentPhoto > prevPhoto) {
-        // rigt shift
+        // right shift
         for (let i = 0; i < (currentPhoto - prevPhoto); i++) {
             screenPosition = Math.max(screenPosition - photoWidth * photoNum, -photoWidth * photosMassiveLength - photoNum);
         }
@@ -244,7 +244,6 @@ let secondScreenPosition = 0; // current left shift
 let prevSecondScreenPhoto = 0;
 
 function photoActionListener(currentPhoto) {
-    console.log(currentPhoto);
     photoAction(currentPhoto)
     toggleTab(currentPhoto);
 }
@@ -259,40 +258,44 @@ let endMouseXCoordinate = 0;
 
 
 function carouselMouseDown(event) {
-    if(event.type=="touchstart"){
+    if (event.type == "touchstart") {
         startMouseXCoordinate = event.changedTouches[0].pageX;
     }
-    else{
+    else {
         startMouseXCoordinate = event.pageX;
     }
-    console.log(startMouseXCoordinate);
 }
 
 function carouselMouseUp(event) {
-    if(event.type=="touchend"){
+    if (event.type == "touchend") {
         endMouseXCoordinate = event.changedTouches[0].pageX;
     }
-    else{
+    else {
         endMouseXCoordinate = event.pageX;
     }
-    console.log(endMouseXCoordinate);
     if (endMouseXCoordinate < startMouseXCoordinate) {
-        console.log("right");
         if (prevSecondScreenPhoto >= 0 && prevSecondScreenPhoto < 3) {
-            photoActionListener(prevSecondScreenPhoto + 1);
+            if(event.currentTarget.classList[0] == 'photo-carousel'){
+                carouselAction(prevForthScreenPhotoBlock + 1);
+            }
+            else{
+                photoActionListener(prevSecondScreenPhoto + 1);
+            }
         }
     }
     if (endMouseXCoordinate > startMouseXCoordinate) {
-        console.log("left");
         if (prevSecondScreenPhoto > 0 && prevSecondScreenPhoto <= 3) {
-            photoActionListener(prevSecondScreenPhoto - 1);
+            if(event.currentTarget.classList[0] == 'photo-carousel'){
+                carouselAction(prevForthScreenPhotoBlock - 1);
+            }
+            else{
+                photoActionListener(prevSecondScreenPhoto - 1);
+            }
         }
     }
 
     startMouseXCoordinate = 0;
     endMouseXCoordinate = 0;
-
-    console.log(endMouseXCoordinate);
 }
 
 const secondScreenBlockElements = document.querySelector(".photo-slider-control-block");
@@ -350,52 +353,11 @@ photoPageElements.forEach(function (element, i) {
     element.addEventListener('click', function () { carouselAction(i) })
 });
 
-let startMouseXCoordinateForth = 0;
-let endMouseXCoordinateForth = 0;
-
-
-function forthScreenCarouselMouseDown(event) {
-    if(event.type=="touchstart"){
-        startMouseXCoordinateForth = event.changedTouches[0].pageX;
-    }
-    else{
-        startMouseXCoordinateForth = event.pageX;
-    }
-    console.log(startMouseXCoordinateForth);
-}
-
-function forthScreenCarouselMouseUp(event) {
-    if(event.type=="touchend"){
-        endMouseXCoordinateForth = event.changedTouches[0].pageX;
-    }
-    else {
-        endMouseXCoordinateForth = event.pageX;
-    }
-    console.log(endMouseXCoordinateForth);
-    if (endMouseXCoordinateForth < startMouseXCoordinateForth) {
-        console.log("right");
-        if (prevForthScreenPhotoBlock >= 0 && prevForthScreenPhotoBlock < 3) {
-            carouselAction(prevForthScreenPhotoBlock + 1);
-        }
-    }
-    else {
-        console.log("left");
-        if (prevForthScreenPhotoBlock > 0 && prevForthScreenPhotoBlock <= 3) {
-            carouselAction(prevForthScreenPhotoBlock - 1);
-        }
-    }
-
-    startMouseXCoordinateForth = 0;
-    endMouseXCoordinateForth = 0;
-
-    console.log(endMouseXCoordinate);
-}
-
 const forthScreenBlockElements = document.querySelector(".photo-carousel");
-forthScreenBlockElements.addEventListener('mousedown', forthScreenCarouselMouseDown);
-forthScreenBlockElements.addEventListener('mouseup', forthScreenCarouselMouseUp);
-forthScreenBlockElements.addEventListener('touchstart', forthScreenCarouselMouseDown);
-forthScreenBlockElements.addEventListener('touchend', forthScreenCarouselMouseUp);
+forthScreenBlockElements.addEventListener('mousedown', carouselMouseDown);
+forthScreenBlockElements.addEventListener('mouseup', carouselMouseUp);
+forthScreenBlockElements.addEventListener('touchstart', carouselMouseDown);
+forthScreenBlockElements.addEventListener('touchend', carouselMouseUp);
 
 function createPhotoBlock(dataForCarousel) {
     let photoBlock = makeElement('div', 'photo-block');;
@@ -441,34 +403,52 @@ createPhotoCarousel(mockData);
 
 window.addEventListener("resize", resizePhoto, false);
 
+function CarouselShiftResize(carouselControls) {
+    let blockNum = 0;
+    for (let i = 0; i < carouselControls.length; i++) {
+        if (carouselControls[i].classList[1] == 'active') {
+            blockNum = i;
+        }
+    }
+    return blockNum;
+}
+
 function resizePhoto() {
-    position = 0;
     const carouselWidth = document.querySelector('.photo-carousel').getBoundingClientRect().width;
-    const thirdScreenContainerWidth = document.querySelector('.photo-slider-control').getBoundingClientRect().width;
+    const secondScreenContainerWidth = document.querySelector('.photo-slider-control').getBoundingClientRect().width;
     const photoBlock = document.querySelectorAll('.photo-carousel .photo-block');
     let photosForCarousel = document.querySelectorAll('.photo-block .photo');
-    const thirdScreenPhotos = document.querySelectorAll('.photo-slider-content');
-    let devider;
+    const secondScreenPhotos = document.querySelectorAll('.photo-slider-content');
+    let divider, currentPhoto;
     if (window.innerHeight > window.innerWidth) {
-        devider = 2;
+        divider = 2;
         photoBlock[0].style.display = 'none';
         photoBlock[1].style.display = 'block';
         photoBlock[2].style.display = 'block';
         photoBlock[2].style.marginTop = '-4px';
     }
     else {
-        devider = 4;
+        divider = 4;
         photoBlock[0].style.display = 'block';
         photoBlock[1].style.display = 'none';
         photoBlock[2].style.display = 'none';
     }
     for (let photo of photosForCarousel) {
-        photo.style.width = (carouselWidth / devider) + 'px';
+        photo.style.width = (carouselWidth / divider) + 'px';
     }
 
-    for (let photo of thirdScreenPhotos) {
-        photo.style.width = thirdScreenContainerWidth + 'px';
+    currentPhoto = CarouselShiftResize(photoPageElements);
+    forthScreenPosition = 0;
+    prevForthScreenPhotoBlock = 0;
+
+    for (let photo of secondScreenPhotos) {
+        photo.style.width = secondScreenContainerWidth + 'px';
+
     }
+    currentPhoto = CarouselShiftResize(secondScreenPageElements);
+    secondScreenPosition = 0;
+    prevSecondScreenPhoto = 0;
+    photoAction(currentPhoto);
 }
 
 resizePhoto();

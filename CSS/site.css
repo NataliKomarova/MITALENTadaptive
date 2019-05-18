@@ -406,7 +406,6 @@ header {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  background-color: white;
   max-width: 1920px;
   height: 3vh;
   max-height: 32px;
@@ -456,7 +455,13 @@ header .menu-toggle {
        user-select: none;
 }
 
-header .menu-toggle input {
+@media screen and (orientation: portrait) {
+  header .menu-toggle {
+    display: block;
+  }
+}
+
+header .menu-toggle input[type="checkbox"] {
   display: block;
   width: 15px;
   height: 12px;
@@ -468,33 +473,27 @@ header .menu-toggle input {
   z-index: 2;
 }
 
-header .menu-toggle input:checked ~ .burger-layer {
+header .menu-toggle input[type="checkbox"]:checked ~ .burger-layer {
   opacity: 1;
   -webkit-transform: rotate(45deg) translate(-2px, -1px);
           transform: rotate(45deg) translate(-2px, -1px);
   background: #232323;
 }
 
-header .menu-toggle input:checked ~ .burger-layer:nth-of-type(2) {
+header .menu-toggle input[type="checkbox"]:checked ~ .burger-layer:nth-of-type(2) {
   opacity: 0;
   -webkit-transform: rotate(0deg) scale(0.2, 0.2);
           transform: rotate(0deg) scale(0.2, 0.2);
 }
 
-header .menu-toggle input:checked ~ span:nth-of-type(3) {
+header .menu-toggle input[type="checkbox"]:checked ~ span:nth-of-type(3) {
   -webkit-transform: rotate(-45deg) translate(0, -1px);
           transform: rotate(-45deg) translate(0, -1px);
 }
 
-header .menu-toggle input:checked ~ .burger-menu {
+header .menu-toggle input[type="checkbox"]:checked ~ .burger-menu {
   -webkit-transform: none;
           transform: none;
-}
-
-@media screen and (orientation: portrait) {
-  header .menu-toggle {
-    display: block;
-  }
 }
 
 header .burger-layer {
