@@ -273,25 +273,18 @@ function carouselMouseUp(event) {
     else {
         endMouseXCoordinate = event.pageX;
     }
-    if (endMouseXCoordinate < startMouseXCoordinate) {
-        if (prevSecondScreenPhoto >= 0 && prevSecondScreenPhoto < 3) {
-            if(event.currentTarget.classList[0] == 'photo-carousel'){
-                carouselAction(prevForthScreenPhotoBlock + 1);
-            }
-            else{
-                photoActionListener(prevSecondScreenPhoto + 1);
-            }
-        }
-    }
+    let direction = 1;
     if (endMouseXCoordinate > startMouseXCoordinate) {
-        if (prevSecondScreenPhoto > 0 && prevSecondScreenPhoto <= 3) {
-            if(event.currentTarget.classList[0] == 'photo-carousel'){
-                carouselAction(prevForthScreenPhotoBlock - 1);
-            }
-            else{
-                photoActionListener(prevSecondScreenPhoto - 1);
-            }
-        }
+        direction = -1;
+    }
+
+    if (prevSecondScreenPhoto >= 0 && (direction > 0 && prevSecondScreenPhoto < 3 || direction < 0 && prevSecondScreenPhoto > 0) &&
+         event.currentTarget.classList[0] == 'photo-slider-control-block') {
+        photoActionListener(prevSecondScreenPhoto + direction);
+    }
+    if (prevForthScreenPhotoBlock >= 0 && (direction > 0 && prevForthScreenPhotoBlock < 3 || direction < 0 && prevForthScreenPhotoBlock > 0) &&
+         event.currentTarget.classList[0] == 'photo-carousel') {
+        carouselAction(prevForthScreenPhotoBlock + direction);
     }
 
     startMouseXCoordinate = 0;
